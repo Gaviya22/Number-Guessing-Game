@@ -3,12 +3,17 @@ let attempts = 0;
 const maxAttempts = 3;
 
 function btnClickOnAction() {
+
     if (attempts >= maxAttempts) {
-        document.getElementById("result").innerHTML = `
-            <h3 style="color:red;">Game Over!</h3>
-            <p>You have used all ${maxAttempts} attempts.</p>
-            <p>The correct number was <b>${randomNumber}</b>.</p>
-        `;
+        Swal.fire({
+            icon: "error",
+            title: "Game Over!",
+            html: `
+                <p>You have used all <b>${maxAttempts}</b> attempts.</p>
+                <p>The correct number was <b>${randomNumber}</b>.</p>
+            `,
+            confirmButtonColor: "red"
+        });
         return;
     }
 
@@ -16,28 +21,56 @@ function btnClickOnAction() {
     attempts++;
 
     if (userGuess === randomNumber) {
-        document.getElementById("result").innerHTML = `
-            <h3 style="color:green;">🎉 Congratulations!</h3>
-            <p>You've guessed the number <b>${randomNumber}</b> in <b>${attempts}</b> attempt(s).</p>
-        `;
-    } 
-    else if (attempts === maxAttempts) {
-        document.getElementById("result").innerHTML = `
-            <h3 style="color:red;">Game Over!</h3>
-            <p>You have used all ${maxAttempts} attempts.</p>
-            <p>The correct number was <b>${randomNumber}</b>.</p>
-        `;
-    } 
-    else if (userGuess < randomNumber) {
-        document.getElementById("result").innerHTML = `
-            <span style="color:blue;">Too low! Try again.</span>
-            <p>Attempts left: <b>${maxAttempts - attempts}</b></p>
-        `;
-    } 
-    else {
-        document.getElementById("result").innerHTML = `
-            <span style="color:red;">Too high! Try again.</span>
-            <p>Attempts left: <b>${maxAttempts - attempts}</b></p>
-        `;
+
+    Swal.fire({
+        icon: "success",
+        title: "🎉 Congratulations!",
+        html: `
+            <p>You guessed the number <b>${randomNumber}</b>.</p>
+            <p>Attempts: <b>${attempts}</b></p>
+        `,
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#ffffff",
+        backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2hidHYydnlyYm10bDhlMWhxYjU2Y2thN3NkcngyY3o4N3JmcXNxdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BPJmthQ3YRwD6QqcVD/giphy.gif")
+            left center
+            no-repeat
+        `,
+        confirmButtonColor: "green"
+    });
+
+    } else if (attempts === maxAttempts) {
+
+        Swal.fire({
+            icon: "error",
+            title: "Game Over!",
+            html: `
+                <p>You have used all <b>${maxAttempts}</b> attempts.</p>
+                <p>The correct number was <b>${randomNumber}</b>.</p>
+            `,
+            confirmButtonColor: "red"
+        });
+
+    } else if (userGuess < randomNumber) {
+
+        Swal.fire({
+            icon: "warning",
+            title: "Too Low! ⬇️",
+            text: `Try again. Attempts left: ${maxAttempts - attempts}`,
+            confirmButtonColor: "blue"
+        });
+
+    } else {
+
+        Swal.fire({
+            icon: "warning",
+            title: "Too High! ⬆️",
+            text: `Try again. Attempts left: ${maxAttempts - attempts}`,
+            confirmButtonColor: "blue"
+        });
+
     }
 }
