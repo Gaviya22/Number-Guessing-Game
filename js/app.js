@@ -29,13 +29,13 @@ function btnClickOnAction() {
             <p>You guessed the number <b>${randomNumber}</b>.</p>
             <p>Attempts: <b>${attempts}</b></p>
         `,
-        width: 600,
+        width: 400,
         padding: "3em",
         color: "#716add",
         background: "#ffffff",
         backdrop: `
             rgba(0,0,123,0.4)
-            url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2hidHYydnlyYm10bDhlMWhxYjU2Y2thN3NkcngyY3o4N3JmcXNxdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BPJmthQ3YRwD6QqcVD/giphy.gif")
+            url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3ZwbDdwaGsybXU2ZzlpYzF1bXU1a3J0NzBpeGJ5MmhpdDB0c2VscSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT0xezQGU5xCDJuCPe/giphy.gif")
             left center
             no-repeat
         `,
@@ -46,10 +46,20 @@ function btnClickOnAction() {
 
         Swal.fire({
             icon: "error",
-            title: "Game Over!",
+            title: "😔 Game Over!",
             html: `
                 <p>You have used all <b>${maxAttempts}</b> attempts.</p>
                 <p>The correct number was <b>${randomNumber}</b>.</p>
+            `,
+            width: 400,
+            padding: "3em",
+            color: "#716add",
+            background: "#ffffff",
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGs3bjU3MmNuMmZiZHpuejh1enluNjl1ZTZpZG01Z2ZoNGlmMHphYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6jGSATC6FpEVtRg2Ku/giphy.gif")
+                left center
+                no-repeat
             `,
             confirmButtonColor: "red"
         });
